@@ -21,7 +21,7 @@ interface Privacy {
 
     fun dispatchAuth()
 
-    var privacyHandle: PrivacyHandle?
+    var highPrivacyActivityClass: (() -> Class<*>)?
 
     var isAuth: Boolean
 }
