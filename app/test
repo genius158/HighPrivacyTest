@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0"
+    android:compileSdkVersion="29"
+    android:compileSdkVersionCodename="10"
+    package="com.yan.highprivacytest"
+    platformBuildVersionCode="29"
+    platformBuildVersionName="10">
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="29" />
+
+    <application
+        android:theme="@ref/0x7f0d0005"
+        android:label="@ref/0x7f0c001b"
+        android:icon="@ref/0x7f0b0000"
+        android:name="com.yan.highprivacy.PrivacyApplicationHock"
+        android:debuggable="true"
+        android:testOnly="true"
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:roundIcon="@ref/0x7f0b0001"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+
+        <activity
+            android:name="com.yan.highprivacytest.MainActivity">
+
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.yan.highprivacy.PrivacyActivity" />
+    </application>
+</manifest>
