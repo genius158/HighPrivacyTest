@@ -47,9 +47,10 @@ public class PrivacyProviderFind {
                     Pattern pattern = Pattern.compile("<provider\\s*android:name\\s*=\\s*\"[^\"]+\"");
 
                     Matcher matcher = pattern.matcher(manifestStr);
-                    replaceClass.clear();
                     while (matcher.find()) {
                         String providerClass = matcher.group().replaceAll("<provider\\s*android:name\\s*=\\s*", "").replace("\"", "").trim();
+                        if (replaceClass.contains(providerClass)) continue;
+
                         replaceClass.add(providerClass);
                     }
                     KernelLog.info("replaceClass  " + replaceClass.toString());
