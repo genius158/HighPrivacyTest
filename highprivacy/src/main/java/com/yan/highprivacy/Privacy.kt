@@ -8,20 +8,29 @@ import android.content.Context
  * @since  2020/9/23
  */
 interface Privacy {
-    fun onAttachContext(
-        app: Application,
-        context: Context,
-        onAttachContextHock: () -> Unit
-    )
+  fun onAttachContext(
+    app: Application,
+    context: Context,
+    onAttachContextHock: () -> Unit
+  )
 
-    fun onCreate(
-        appHock: Application,
-        onCreateHock: () -> Unit
-    )
+  fun onCreate(
+    appHock: Application,
+    onCreateHock: () -> Unit
+  )
 
-    fun dispatchAuth()
+  fun dispatchAuth()
 
-    var highPrivacyActivityClass: (() -> Class<*>)?
+  /**
+   * 拦截打开任意activity（除了[highPrivacyActivityClass]类型）意图
+   * 定向到 本类型 activity
+   */
+  var highPrivacyActivityClass: (() -> Class<*>)?
 
-    var isAuth: Boolean
+  /**
+   * see [highPrivacyActivityClass]
+   */
+  var interceptIgnoreActivityClass: (() -> Array<Class<*>>)?
+
+  var isAuth: Boolean
 }

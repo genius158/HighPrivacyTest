@@ -35,6 +35,7 @@ public class PrivacyProviderFind {
                         .file("AndroidManifest.xml")
                         .getAsFile();
 
+                KernelLog.info("BaseVariantOutput   " + manifest.getAbsolutePath());
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new FileReader(manifest));
 
