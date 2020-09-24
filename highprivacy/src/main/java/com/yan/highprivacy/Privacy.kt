@@ -1,36 +1,29 @@
 package com.yan.highprivacy
 
-import android.app.Application
-import android.content.Context
-
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
  * @since  2020/9/23
  */
 interface Privacy {
-  fun onAttachContext(
-    app: Application,
-    context: Context,
-    onAttachContextHock: () -> Unit
-  )
 
-  fun onCreate(
-    appHock: Application,
-    onCreateHock: () -> Unit
-  )
+    fun dispatchAuth()
 
-  fun dispatchAuth()
+    /**
+     * 取消授权，重启，杀死所有进程
+     */
+    fun dispatchUnAuth()
 
-  /**
-   * 拦截打开任意activity（除了[highPrivacyActivityClass]类型）意图
-   * 定向到 本类型 activity
-   */
-  var highPrivacyActivityClass: (() -> Class<*>)?
+    fun isAuth(): Boolean
 
-  /**
-   * see [highPrivacyActivityClass]
-   */
-  var interceptIgnoreActivityClass: (() -> Array<Class<*>>)?
+    /**
+     * 拦截打开任意activity（除了[highPrivacyActivityClass]类型）意图
+     * 定向到 本类型 activity
+     */
+    var highPrivacyActivityClass: (() -> Class<*>)?
 
-  var isAuth: Boolean
+    /**
+     * see [highPrivacyActivityClass]
+     */
+    var interceptIgnoreActivityClass: (() -> Array<Class<*>>)?
+
 }

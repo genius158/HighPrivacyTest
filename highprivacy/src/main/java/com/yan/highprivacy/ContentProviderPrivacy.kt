@@ -11,7 +11,7 @@ import android.content.pm.ProviderInfo
 abstract class ContentProviderPrivacy : ContentProvider() {
 
     override fun attachInfo(context: Context?, info: ProviderInfo?) {
-        if (PrivacyMgr.privacy.isAuth) {
+        if (PrivacyMgr.privacy.isAuth()) {
             super.attachInfo(context, info)
         } else {
             ExtraAuthDispatcher.dispatcher.observe {
