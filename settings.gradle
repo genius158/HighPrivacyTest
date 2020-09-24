@@ -1,1 +1,1 @@
-include ':highprivacy'include ':app'rootProject.name = "highprivacytest"
+include ':highprivacy'include ':asmprivacy'include ':app'rootProject.name = "highprivacytest"
