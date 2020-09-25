@@ -5,15 +5,19 @@ package com.yan.highprivacy
  * @since  2020/9/24
  * 额外授权通知
  */
-internal class ExtraAuthDispatcher {
+class ExtraAuthDispatcher {
 
     companion object {
+        @JvmStatic
         val dispatcher by lazy { ExtraAuthDispatcher() }
     }
 
     private val onDispatches = ArrayList<() -> Unit>()
 
     fun observe(onDispatch: () -> Unit) {
+        if (PrivacyMgr.privacy.isAuth()){
+
+        }
         onDispatches.add(onDispatch)
     }
 

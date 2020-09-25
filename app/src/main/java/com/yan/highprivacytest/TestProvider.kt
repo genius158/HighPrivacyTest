@@ -14,7 +14,7 @@ import android.util.Log
  */
 class TestProvider : ContentProvider() {
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-       return null
+        return null
     }
 
     override fun query(
@@ -27,14 +27,17 @@ class TestProvider : ContentProvider() {
         return null
     }
 
+    override fun attachInfo(context: Context?, info: ProviderInfo?) {
+        super.attachInfo(context, info)
+        Log.e("TestProvider", "attachInfo attachInfo attachInfo attachInfo attachInfo")
+
+    }
+
     override fun onCreate(): Boolean {
         Log.e("TestProvider", "onCreate onCreate onCreate onCreate onCreate")
         return true
     }
 
-    override fun attachInfo(context: Context?, info: ProviderInfo?) {
-        super.attachInfo(context, info)
-    }
 
     override fun update(
         uri: Uri,
@@ -42,11 +45,11 @@ class TestProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-       return 0
+        return 0
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-      return 0
+        return 0
     }
 
     override fun getType(uri: Uri): String? {
