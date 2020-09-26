@@ -13,7 +13,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.TypePath;
 
-public class TestProvider2Dump implements Opcodes {
+public class ActivityTestDump implements Opcodes {
 
     public static byte[] dump() throws Exception {
 
@@ -22,246 +22,75 @@ public class TestProvider2Dump implements Opcodes {
         MethodVisitor methodVisitor;
         AnnotationVisitor annotationVisitor0;
 
-        classWriter.visit(V1_7, ACC_PUBLIC | ACC_SUPER, "com/yan/highprivacytest/TestProvider2", null, "android/content/ContentProvider", null);
+        classWriter.visit(V1_7, ACC_PUBLIC | ACC_SUPER, "com/yan/highprivacytest/ActivityTest", null, "androidx/fragment/app/FragmentActivity", null);
 
-        classWriter.visitSource("TestProvider2.java", null);
-
-        classWriter.visitInnerClass("com/yan/highprivacytest/TestProvider2$1", null, null, 0);
+        classWriter.visitSource("ActivityTest.java", null);
 
         {
             methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
             methodVisitor.visitCode();
             Label label0 = new Label();
             methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(20, label0);
+            methodVisitor.visitLineNumber(14, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
-            methodVisitor.visitMethodInsn(INVOKESPECIAL, "android/content/ContentProvider", "<init>", "()V", false);
+            methodVisitor.visitMethodInsn(INVOKESPECIAL, "androidx/fragment/app/FragmentActivity", "<init>", "()V", false);
             methodVisitor.visitInsn(RETURN);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
+            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/ActivityTest;", null, label0, label1, 0);
             methodVisitor.visitMaxs(1, 1);
             methodVisitor.visitEnd();
         }
         {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "attachInfo", "(Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V", null, null);
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(23, label0);
-            methodVisitor.visitMethodInsn(INVOKESTATIC, "com/yan/highprivacy/ExtraAuthDispatcher", "getDispatcher", "()Lcom/yan/highprivacy/ExtraAuthDispatcher;", false);
-            methodVisitor.visitTypeInsn(NEW, "com/yan/highprivacytest/TestProvider2$1");
-            methodVisitor.visitInsn(DUP);
-            methodVisitor.visitVarInsn(ALOAD, 0);
-            methodVisitor.visitVarInsn(ALOAD, 1);
-            methodVisitor.visitVarInsn(ALOAD, 2);
-            methodVisitor.visitMethodInsn(INVOKESPECIAL, "com/yan/highprivacytest/TestProvider2$1", "<init>", "(Lcom/yan/highprivacytest/TestProvider2;Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V", false);
-            methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/yan/highprivacy/ExtraAuthDispatcher", "observe", "(Lcom/yan/highprivacy/OnDispatch;)V", false);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLineNumber(29, label1);
-            methodVisitor.visitInsn(RETURN);
-            Label label2 = new Label();
-            methodVisitor.visitLabel(label2);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label2, 0);
-            methodVisitor.visitLocalVariable("context", "Landroid/content/Context;", null, label0, label2, 1);
-            methodVisitor.visitLocalVariable("info", "Landroid/content/pm/ProviderInfo;", null, label0, label2, 2);
-            methodVisitor.visitMaxs(6, 3);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "onCreate", "()Z", null, null);
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(33, label0);
-            methodVisitor.visitInsn(ICONST_0);
-            methodVisitor.visitInsn(IRETURN);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitMaxs(1, 1);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "query", "(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", null, null);
-            {
-                annotationVisitor0 = methodVisitor.visitAnnotation("Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitAnnotableParameterCount(5, false);
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/NonNull;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(1, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(2, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(3, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(4, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(39, label0);
-            methodVisitor.visitInsn(ACONST_NULL);
-            methodVisitor.visitInsn(ARETURN);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("uri", "Landroid/net/Uri;", null, label0, label1, 1);
-            methodVisitor.visitLocalVariable("projection", "[Ljava/lang/String;", null, label0, label1, 2);
-            methodVisitor.visitLocalVariable("selection", "Ljava/lang/String;", null, label0, label1, 3);
-            methodVisitor.visitLocalVariable("selectionArgs", "[Ljava/lang/String;", null, label0, label1, 4);
-            methodVisitor.visitLocalVariable("sortOrder", "Ljava/lang/String;", null, label0, label1, 5);
-            methodVisitor.visitMaxs(1, 6);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "getType", "(Landroid/net/Uri;)Ljava/lang/String;", null, null);
-            {
-                annotationVisitor0 = methodVisitor.visitAnnotation("Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
+            methodVisitor = classWriter.visitMethod(ACC_PROTECTED, "onCreate", "(Landroid/os/Bundle;)V", null, null);
             methodVisitor.visitAnnotableParameterCount(1, false);
             {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/NonNull;", false);
+                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/Nullable;", false);
                 annotationVisitor0.visitEnd();
             }
             methodVisitor.visitCode();
             Label label0 = new Label();
             methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(45, label0);
-            methodVisitor.visitInsn(ACONST_NULL);
-            methodVisitor.visitInsn(ARETURN);
+            methodVisitor.visitLineNumber(18, label0);
+            methodVisitor.visitMethodInsn(INVOKESTATIC, "com/yan/highprivacy/PrivacyMgr", "getPrivacy", "()Lcom/yan/highprivacy/Privacy;", false);
+            methodVisitor.visitMethodInsn(INVOKEINTERFACE, "com/yan/highprivacy/Privacy", "isAuth", "()Z", true);
             Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("uri", "Landroid/net/Uri;", null, label0, label1, 1);
-            methodVisitor.visitMaxs(1, 2);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "insert", "(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;", null, null);
-            {
-                annotationVisitor0 = methodVisitor.visitAnnotation("Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitAnnotableParameterCount(2, false);
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/NonNull;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(1, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(51, label0);
-            methodVisitor.visitInsn(ACONST_NULL);
-            methodVisitor.visitInsn(ARETURN);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("uri", "Landroid/net/Uri;", null, label0, label1, 1);
-            methodVisitor.visitLocalVariable("values", "Landroid/content/ContentValues;", null, label0, label1, 2);
-            methodVisitor.visitMaxs(1, 3);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "delete", "(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I", null, null);
-            methodVisitor.visitAnnotableParameterCount(3, false);
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/NonNull;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(1, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(2, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(56, label0);
-            methodVisitor.visitInsn(ICONST_0);
-            methodVisitor.visitInsn(IRETURN);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("uri", "Landroid/net/Uri;", null, label0, label1, 1);
-            methodVisitor.visitLocalVariable("selection", "Ljava/lang/String;", null, label0, label1, 2);
-            methodVisitor.visitLocalVariable("selectionArgs", "[Ljava/lang/String;", null, label0, label1, 3);
-            methodVisitor.visitMaxs(1, 4);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "update", "(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I", null, null);
-            methodVisitor.visitAnnotableParameterCount(4, false);
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(0, "Landroidx/annotation/NonNull;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(1, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(2, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            {
-                annotationVisitor0 = methodVisitor.visitParameterAnnotation(3, "Landroidx/annotation/Nullable;", false);
-                annotationVisitor0.visitEnd();
-            }
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(61, label0);
-            methodVisitor.visitInsn(ICONST_0);
-            methodVisitor.visitInsn(IRETURN);
-            Label label1 = new Label();
-            methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("uri", "Landroid/net/Uri;", null, label0, label1, 1);
-            methodVisitor.visitLocalVariable("values", "Landroid/content/ContentValues;", null, label0, label1, 2);
-            methodVisitor.visitLocalVariable("selection", "Ljava/lang/String;", null, label0, label1, 3);
-            methodVisitor.visitLocalVariable("selectionArgs", "[Ljava/lang/String;", null, label0, label1, 4);
-            methodVisitor.visitMaxs(1, 5);
-            methodVisitor.visitEnd();
-        }
-        {
-            methodVisitor = classWriter.visitMethod(ACC_STATIC | ACC_SYNTHETIC, "access$001", "(Lcom/yan/highprivacytest/TestProvider2;Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V", null, null);
-            methodVisitor.visitCode();
-            Label label0 = new Label();
-            methodVisitor.visitLabel(label0);
-            methodVisitor.visitLineNumber(20, label0);
+            methodVisitor.visitJumpInsn(IFNE, label1);
+            methodVisitor.visitMethodInsn(INVOKESTATIC, "com/yan/highprivacy/PrivacyMgr", "getPrivacy", "()Lcom/yan/highprivacy/Privacy;", false);
+            methodVisitor.visitVarInsn(ALOAD, 0);
+            methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
+            methodVisitor.visitMethodInsn(INVOKEINTERFACE, "com/yan/highprivacy/Privacy", "activityInWhitelist", "(Ljava/lang/Class;)Z", true);
+            methodVisitor.visitJumpInsn(IFNE, label1);
+            Label label2 = new Label();
+            methodVisitor.visitLabel(label2);
+            methodVisitor.visitLineNumber(19, label2);
             methodVisitor.visitVarInsn(ALOAD, 0);
             methodVisitor.visitVarInsn(ALOAD, 1);
-            methodVisitor.visitVarInsn(ALOAD, 2);
-            methodVisitor.visitMethodInsn(INVOKESPECIAL, "android/content/ContentProvider", "attachInfo", "(Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V", false);
+            methodVisitor.visitMethodInsn(INVOKESPECIAL, "androidx/fragment/app/FragmentActivity", "onCreate", "(Landroid/os/Bundle;)V", false);
+            Label label3 = new Label();
+            methodVisitor.visitLabel(label3);
+            methodVisitor.visitLineNumber(20, label3);
+            methodVisitor.visitVarInsn(ALOAD, 0);
+            methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/yan/highprivacytest/ActivityTest", "finish", "()V", false);
+            Label label4 = new Label();
+            methodVisitor.visitLabel(label4);
+            methodVisitor.visitLineNumber(21, label4);
             methodVisitor.visitInsn(RETURN);
-            Label label1 = new Label();
             methodVisitor.visitLabel(label1);
-            methodVisitor.visitLocalVariable("x0", "Lcom/yan/highprivacytest/TestProvider2;", null, label0, label1, 0);
-            methodVisitor.visitLocalVariable("x1", "Landroid/content/Context;", null, label0, label1, 1);
-            methodVisitor.visitLocalVariable("x2", "Landroid/content/pm/ProviderInfo;", null, label0, label1, 2);
-            methodVisitor.visitMaxs(3, 3);
+            methodVisitor.visitLineNumber(24, label1);
+            methodVisitor.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
+            methodVisitor.visitVarInsn(ALOAD, 0);
+            methodVisitor.visitVarInsn(ALOAD, 1);
+            methodVisitor.visitMethodInsn(INVOKESPECIAL, "androidx/fragment/app/FragmentActivity", "onCreate", "(Landroid/os/Bundle;)V", false);
+            Label label5 = new Label();
+            methodVisitor.visitLabel(label5);
+            methodVisitor.visitLineNumber(25, label5);
+            methodVisitor.visitInsn(RETURN);
+            Label label6 = new Label();
+            methodVisitor.visitLabel(label6);
+            methodVisitor.visitLocalVariable("this", "Lcom/yan/highprivacytest/ActivityTest;", null, label0, label6, 0);
+            methodVisitor.visitLocalVariable("savedInstanceState", "Landroid/os/Bundle;", null, label0, label6, 1);
+            methodVisitor.visitMaxs(2, 2);
             methodVisitor.visitEnd();
         }
         classWriter.visitEnd();

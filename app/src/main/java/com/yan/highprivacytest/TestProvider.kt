@@ -2,8 +2,6 @@ package com.yan.highprivacytest
 
 import android.content.ContentProvider
 import android.content.ContentValues
-import android.content.Context
-import android.content.pm.ProviderInfo
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
@@ -27,11 +25,6 @@ class TestProvider : ContentProvider() {
         return null
     }
 
-    override fun attachInfo(context: Context?, info: ProviderInfo?) {
-        super.attachInfo(context, info)
-        Log.e("TestProvider", "attachInfo attachInfo attachInfo attachInfo attachInfo")
-
-    }
 
     override fun onCreate(): Boolean {
         Log.e("TestProvider", "onCreate onCreate onCreate onCreate onCreate")

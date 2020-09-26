@@ -16,14 +16,14 @@ interface Privacy {
     fun isAuth(): Boolean
 
     /**
-     * 拦截打开任意activity（除了[highPrivacyActivityClass]类型）意图
+     * 拦截打开任意activity（除了[activityClassWhiteList]类型）意图
      * 定向到 本类型 activity
      */
-    var highPrivacyActivityClass: (() -> Class<*>)?
+    var highPrivacyActivityClass: Class<*>?
 
     /**
      * see [highPrivacyActivityClass]
      */
-    var interceptIgnoreActivityClass: (() -> Array<Class<*>>)?
+    var activityClassWhiteList: Array<Class<*>>?
 
 }

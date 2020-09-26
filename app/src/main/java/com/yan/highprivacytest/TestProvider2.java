@@ -1,11 +1,11 @@
 package com.yan.highprivacytest;
 
-import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,14 +15,18 @@ import androidx.annotation.Nullable;
  * @author Bevan (Contact me: https://github.com/genius158)
  * @since 2020/9/24
  */
-public class TestProvider2 extends ContentProvider {
+public class TestProvider2 extends TestProvider3 {
     @Override
-    public void attachInfo(final Context context, final ProviderInfo info) {
-
+    public void attachInfo(Context context, ProviderInfo info) {
+        super.attachInfo(context, info);
+        Log.e("attachInfo3", "TestProvider2 attachInfo attachInfo attachInfo ");
+        Log.e("attachInfo2", "TestProvider2 attachInfo attachInfo attachInfo ");
+        Log.e("attachInfo1", "TestProvider2 attachInfo attachInfo attachInfo ");
     }
-
     @Override
     public boolean onCreate() {
+        Log.e("TestProvider3", "TestProvider2 TestProvider2 TestProvider2");
+
         return false;
     }
 

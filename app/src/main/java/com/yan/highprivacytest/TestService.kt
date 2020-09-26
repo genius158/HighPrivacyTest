@@ -1,20 +1,22 @@
 package com.yan.highprivacytest
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
+import com.yan.highprivacy.PrivacyMgr
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
  * @since  2020/9/24
  */
 class TestService : Service() {
-    override fun onCreate() {
-        super.onCreate()
-        Log.e("TestService", "TestService TestService TestService TestService")
-        Log.e("TestService2", "TestService2 TestService2 TestService2 TestService2")
-        startService(Intent(this, TestService2::class.java))
+    override fun attachBaseContext(base: Context?) {
+        if (!PrivacyMgr.privacy.isAuth()) {
+            stopSelf()
+        } else {
+            super.attachBaseContext(base)
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? {

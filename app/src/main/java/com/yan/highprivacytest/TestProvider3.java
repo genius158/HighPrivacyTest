@@ -2,8 +2,6 @@ package com.yan.highprivacytest;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
@@ -17,14 +15,10 @@ import androidx.annotation.Nullable;
  * @since 2020/9/24
  */
 public class TestProvider3 extends ContentProvider {
-    @Override
-    public void attachInfo(Context context, ProviderInfo info) {
-        super.attachInfo(context, info);
-        Log.e("attachInfo", "attachInfo attachInfo attachInfo attachInfo ");
-    }
 
     @Override
     public boolean onCreate() {
+        Log.e("TestProvider3", "TestProvider3 TestProvider3 TestProvider3");
         return false;
     }
 

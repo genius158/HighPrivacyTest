@@ -15,9 +15,25 @@ public final class AsmPrivacyWeaver extends BaseWeaver {
 
     @Override
     public boolean isWeavableClass(String fullQualifiedClassName) {
-        List<String> classes = PrivacyProviderFind.replaceClass;
-        if (classes.contains(fullQualifiedClassName.replace(".class", ""))) {
-            KernelLog.info("AsmPrivacyWeaver   " + classes + "   " + fullQualifiedClassName);
+        List<String> classes = PrivacyProviderFind.providers;
+        fullQualifiedClassName = fullQualifiedClassName.replace(".class", "");
+        if (classes.contains(fullQualifiedClassName)) {
+            KernelLog.info("AsmPrivacyWeaver providers  " + classes + "   " + fullQualifiedClassName);
+            return true;
+        }
+        classes = PrivacyProviderFind.services;
+        if (classes.contains(fullQualifiedClassName)) {
+            KernelLog.info("AsmPrivacyWeaver services  " + classes + "   " + fullQualifiedClassName);
+            return true;
+        }
+        classes = PrivacyProviderFind.broadcasts;
+        if (classes.contains(fullQualifiedClassName)) {
+            KernelLog.info("AsmPrivacyWeaver broadcasts  " + classes + "   " + fullQualifiedClassName);
+            return true;
+        }
+        classes = PrivacyProviderFind.activities;
+        if (classes.contains(fullQualifiedClassName)) {
+            KernelLog.info("AsmPrivacyWeaver activity  " + classes + "   " + fullQualifiedClassName);
             return true;
         }
         return false;
