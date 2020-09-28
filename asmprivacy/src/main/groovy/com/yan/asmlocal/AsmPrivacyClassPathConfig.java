@@ -35,6 +35,8 @@ public class AsmPrivacyClassPathConfig {
     static final String SERVICE_CLASS_PATH = "android/app/Service";
     static final String SERVICE_METHOD_ATTACH_BASE_CONTEXT = "attachBaseContext";
     static final String SERVICE_METHOD_ATTACH_BASE_CONTEXT_DES = "(Landroid/content/Context;)V";
+    static final String SERVICE_METHOD_START_COMMAND = "onStartCommand";
+    static final String SERVICE_METHOD_START_COMMAND_DES = "(Landroid/content/Intent;II)I";
     static final String SERVICE_METHOD_STOP_SELF = "stopSelf";
     static final String SERVICE_METHOD_STOP_SELF_DES = "()V";
 

@@ -12,6 +12,8 @@ import static com.yan.asmlocal.AsmPrivacyClassPathConfig.PROVIDER_METHOD_ATTACH_
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.PROVIDER_METHOD_ATTACH_INFO_DES;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_ATTACH_BASE_CONTEXT;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_ATTACH_BASE_CONTEXT_DES;
+import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_START_COMMAND;
+import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_START_COMMAND_DES;
 import static org.objectweb.asm.Opcodes.ACC_PROTECTED;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.RETURN;
@@ -19,8 +21,7 @@ import static org.objectweb.asm.Opcodes.RETURN;
 /**
  * 实现什么？
  * <p>
- * 四大组件除了activity 更改父类为我们的代理类，
- * 全部改掉它们靠前原本的实现，改由我们代理类实现
+ * 在四大组件做启动拦截
  */
 public final class AsmPrivacyClassAdapter extends ClassVisitor {
 
@@ -47,6 +48,7 @@ public final class AsmPrivacyClassAdapter extends ClassVisitor {
     private boolean isVisitActivityHockMethod = false;
     private boolean isVisitProviderHockMethod = false;
     private boolean isVisitServiceHockMethod = false;
+    private boolean isVisitServiceStartHockMethod = false;
     private boolean isVisitReceiverHockMethod = false;
 
     @Override
@@ -65,6 +67,14 @@ public final class AsmPrivacyClassAdapter extends ClassVisitor {
                 SERVICE_METHOD_ATTACH_BASE_CONTEXT_DES.equals(descriptor)
         ) {
             isVisitServiceHockMethod = true;
+            return new AsmPrivacyMethodCommon(classPath, superClassPath, name, access, descriptor, super.visitMethod(access, name, descriptor, signature, exceptions), AsmPrivacyMethodCommon.Type.Service);
+        }
+
+        if (PrivacyProviderFind.services.contains(className) &&
+                SERVICE_METHOD_START_COMMAND.equals(name) &&
+                SERVICE_METHOD_START_COMMAND_DES.equals(descriptor)
+        ) {
+            isVisitServiceStartHockMethod = true;
             return new AsmPrivacyMethodCommon(classPath, superClassPath, name, access, descriptor, super.visitMethod(access, name, descriptor, signature, exceptions), AsmPrivacyMethodCommon.Type.Service);
         }
 
@@ -97,6 +107,14 @@ public final class AsmPrivacyClassAdapter extends ClassVisitor {
             mv.visitCode();
             mv.visitAppSuperAttachBaseContext();
             mv.visitInsn(RETURN);
+        }
+        if (PrivacyProviderFind.services.contains(className) && !isVisitServiceStartHockMethod) {
+            String des = SERVICE_METHOD_START_COMMAND_DES;
+            String method = SERVICE_METHOD_START_COMMAND;
+            AsmPrivacyMethodCommon mv = new AsmPrivacyMethodCommon(classPath, superClassPath, method, ACC_PUBLIC, des,
+                    super.visitMethod(ACC_PUBLIC, method, des, null, null), AsmPrivacyMethodCommon.Type.Service);
+            mv.visitCode();
+            mv.visitServiceSuperStartCommand2End();
         }
         if (PrivacyProviderFind.broadcasts.contains(className) && !isVisitReceiverHockMethod) {
             String des = BROADCAST_RECEIVE_METHOD_REPLACE_DES;

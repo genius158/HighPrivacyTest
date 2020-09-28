@@ -37,6 +37,8 @@ import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_ATTACH_B
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_ATTACH_BASE_CONTEXT_DES;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_GET_INS;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_GET_INS_DES;
+import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_START_COMMAND;
+import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_START_COMMAND_DES;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_STOP_SELF;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.SERVICE_METHOD_STOP_SELF_DES;
 import static com.yan.asmlocal.AsmPrivacyClassPathConfig.START_ACT_PROCESS_METHOD;
@@ -79,10 +81,13 @@ public class AsmPrivacyMethodCommon extends LocalVariablesSorter implements Opco
     public void visitCode() {
         super.visitCode();
 
-
         if (type == Type.Service) {
             visitAuthIfPart();
             visitServiceSuperStop();
+            if (SERVICE_METHOD_START_COMMAND.equals(methodName)) {
+                mv.visitInsn(ICONST_2);
+                mv.visitInsn(IRETURN);
+            }
         } else if (type == Type.Receiver) {
             visitAuthIfPart();
             visitReceiverSuperFinish();
@@ -174,6 +179,17 @@ public class AsmPrivacyMethodCommon extends LocalVariablesSorter implements Opco
 
     }
 
+    public void visitServiceSuperStartCommand2End() {
+        mv.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
+        mv.visitVarInsn(ALOAD, 0);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ILOAD, 2);
+        mv.visitVarInsn(ILOAD, 3);
+        mv.visitMethodInsn(INVOKESPECIAL, SERVICE_CLASS_PATH, SERVICE_METHOD_START_COMMAND, SERVICE_METHOD_START_COMMAND_DES, false);
+        mv.visitInsn(IRETURN);
+        mv.visitEnd();
+    }
+
     public void visitAppSuperAttachBaseContext() {
         mv.visitVarInsn(ALOAD, 0);
         mv.visitVarInsn(ALOAD, 1);
@@ -188,6 +204,5 @@ public class AsmPrivacyMethodCommon extends LocalVariablesSorter implements Opco
             mv.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
         }
         super.visitInsn(opcode);
-
     }
 }
