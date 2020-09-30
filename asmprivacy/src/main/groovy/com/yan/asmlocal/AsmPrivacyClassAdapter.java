@@ -139,6 +139,7 @@ public final class AsmPrivacyClassAdapter extends ClassVisitor {
             AsmPrivacyMethodCommon mv = new AsmPrivacyMethodCommon(classPath, superClassPath, method, ACC_PROTECTED, des,
                     super.visitMethod(ACC_PUBLIC, method, des, null, null), AsmPrivacyMethodCommon.Type.Activity);
             mv.visitCode();
+            mv.visitActivitySuperCreate();
             mv.visitInsn(RETURN);
         }
         super.visitEnd();
